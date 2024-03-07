@@ -251,17 +251,17 @@ if __name__ == '__main__':
     # fetch the mode dev/test from the command line
     argparse = argparse.ArgumentParser()
     # fetch the model name from the command line
-    argparse.add_argument("--model_name", type=str, default=None)
-    argparse.add_argument("--mode", type=str, default="dev")
+    argparse.add_argument("--model_name", type=str, default="base")
+    argparse.add_argument("--mode", type=str, default="test")
     # fetch the source and target languages from the command line
-    argparse.add_argument("--source_language", type=str, default="hi")
-    argparse.add_argument("--target_language", type=str, default="mr")
+    argparse.add_argument("--source_language", type=str, default="mal_Mlym")
+    argparse.add_argument("--target_language", type=str, default="hin_Deva")
     # fetch the prompt template and revision template from the command line
-    argparse.add_argument("--prompt_template", type=str, default=None, nargs='+')
+    argparse.add_argument("--prompt_template", type=str, default="Translate from Malayalam to Hindi:\nMalayalam: തിങ്കളാഴ്ച്ച, സ്റ്റാൻഫോർഡ് യൂണിവേഴ്‌സിറ്റി സ്‌കൂൾ\nHindi: सोमवार को, स्टैनफ़ोर्ड यूनिवर्सिटी स्कूल\nMalayalam: ഓഫ് മെഡിസിനിലെ ശാസ്ത്രജ്ഞന്മാർ\nHindi: ऑफ़ मेडिसिन के वैज्ञानिकों ने\nMalayalam: കോശങ്ങളെ അവയുടെ ഇനം\nHindi: कोशिकाओं को उनके प्रकार के\nMalayalam: അനുസരിച്ച് തരംതിരിക്കാൻ കഴിയുന്ന\nHindi: आधार पर छाँट सकने वाला\nMalayalam: ഒരു പുതിയ രോഗനിർണയ ഉപകരണം\nHindi: एक नए डायग्नोस्टिक उपकरण के\nMalayalam: കണ്ടുപിടിച്ചതായി പ്രഖ്യാപിച്ചു.\nHindi: आविष्कार की घोषणा की.\n\nTranslate from Malayalam to Hindi:\nMalayalam: മുന്‍നിര ഗവേഷകര്‍ പറയുന്നത്\nHindi: प्रसिद्ध शोधकर्ताओं ने कहा है कि\nMalayalam: ഇത് അര്‍ബുദം, ക്ഷയം, എച്ച്‍ഐ‍വി,\nHindi: यह कैंसर, टीवी, एचआईवी,\nMalayalam: മലേറിയ പോലുള്ള രോഗങ്ങളുടെ നേരത്തെയുള്ള\nHindi: मलेरिया जैसी बीमारियों का जल्द\nMalayalam: കണ്ടെത്തൽ സാധ്യമാക്കും\nHindi: पता लगाने में सक्षम हो\nMalayalam: എന്നാണ്. താഴ്ന്ന വരുമാനമുള്ള\nHindi: सकता है. अल्प आय वाले\nMalayalam: രാജ്യങ്ങളില്‍ സ്തനാര്‍ബുദം പോലുള്ള\nHindi: देशों में स्तन कैंसर जैसी\nMalayalam: രോഗങ്ങളില്‍ രോഗമുക്തി ലഭിക്കാനുള്ള\nHindi: बीमारियों से ठीक होने की\nMalayalam: സാദ്ധ്യത സമ്പന്ന രാജ്യങ്ങളുടെ പകുതി\nHindi: संभावना अमीर देशों से आधी\nMalayalam: മാത്രമാണ്.\nHindi: ही है.\n\nTranslate from Malayalam to Hindi:\nMalayalam: JAS 39C Gripen രാവിലെ ഏകദേശം\nHindi: JAS 39C Gripen सुबह करीब\nMalayalam: 9:30 ന്, പ്രാദേശിക സമയം (0230\nHindi: 9:30 बजे, स्थानीय समय (0230\nMalayalam: UTC) ക്ക് റൺവേയിലേക്ക് പൊട്ടിത്തെറിക്കുകയും\nHindi: UTC) को रनवे पर धमाके के साथ\nMalayalam: തകർന്നുവീഴുകയും ചെയ്തു,\nHindi: दुर्घटनाग्रस्त हो गया,\nMalayalam: അതിനാൽ എയർപോർട്ട്\nHindi: जिसकी वजह से हवाई अड्डे को\nMalayalam: കൊമേഴ്സ്യൽ വിമാനങ്ങൾക്കായി\nHindi: वाणिज्यिक उड़ानों के लिए\nMalayalam: അടച്ചിട്ടു.\nHindi: बंद कर दिया गया.\n\nTranslate from Malayalam to Hindi:\nMalayalam: പൈലറ്റെന്നാണ് തിരിച്ചറിഞ്ഞത് സ്ക്വാഡ്രൺ ലീഡർ\nHindi: पायलट की पहचान स्क्वाड्रन लीडर\nMalayalam: ദിലോക്രിത് പട്ടാവേ\nHindi: दिलोकृत पटावी के रूप में\nMalayalam: ആണ്.\nHindi: की गई.\n\nTranslate from Malayalam to Hindi:\nMalayalam: സംഭവ സ്ഥലത്തേക്ക് പോകുന്ന സമയത്ത്\nHindi: घटनास्थल की ओर जाते समय\nMalayalam: ഒരു എയർപോർട്ട് ഫയർ വാഹനം കീഴ്‌മേൽ മറിഞ്ഞതായി\nHindi: एक एयरपोर्ट अग्निशामक वाहन लुढ़क गई ऐसा\nMalayalam: പ്രാദേശിക മാധ്യമങ്ങൾ\nHindi: स्थानीय मीडिया ने\nMalayalam: റിപ്പോർട്ട് ചെയ്യുന്നു.\nHindi: बताया है.\n\nTranslate from Malayalam to Hindi:", nargs='+')
     # add argument for the batch size
     argparse.add_argument("--batch_size", type=int, default=1)
     # fetch the root output directory from the command line
-    argparse.add_argument("--root_output_directory", type=str, default=None)
+    argparse.add_argument("--root_output_directory", type=str, default="/kaggle/working/data/")
     args = argparse.parse_args()
     mode = args.mode
     if args.model_name == "base":
